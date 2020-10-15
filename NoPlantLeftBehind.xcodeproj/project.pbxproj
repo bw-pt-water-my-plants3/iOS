@@ -17,6 +17,9 @@
 		6105A4122537E78100A9F2F8 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 6105A4102537E78100A9F2F8 /* LaunchScreen.storyboard */; };
 		6105A41D2537E78100A9F2F8 /* NoPlantLeftBehindTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6105A41C2537E78100A9F2F8 /* NoPlantLeftBehindTests.swift */; };
 		6105A4282537E78100A9F2F8 /* NoPlantLeftBehindUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6105A4272537E78100A9F2F8 /* NoPlantLeftBehindUITests.swift */; };
+		61C703792537EFE000025897 /* SignUpSignIn.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C703782537EFE000025897 /* SignUpSignIn.storyboard */; };
+		61C7037E2537EFF400025897 /* PlantCollection.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C7037D2537EFF400025897 /* PlantCollection.storyboard */; };
+		61C703832537F00600025897 /* AddEditPlant.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 61C703822537F00600025897 /* AddEditPlant.storyboard */; };
 		6F75FF0958C6954143053C12 /* Pods_NoPlantLeftBehindTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24DF8560DE7A1DB124933A79 /* Pods_NoPlantLeftBehindTests.framework */; };
 		A0B709B657FD29CA22E2C207 /* Pods_NoPlantLeftBehind.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = CB1B105E640544433532C9B6 /* Pods_NoPlantLeftBehind.framework */; };
 /* End PBXBuildFile section */
@@ -59,6 +62,9 @@
 		6105A4232537E78100A9F2F8 /* NoPlantLeftBehindUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NoPlantLeftBehindUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		6105A4272537E78100A9F2F8 /* NoPlantLeftBehindUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoPlantLeftBehindUITests.swift; sourceTree = "<group>"; };
 		6105A4292537E78100A9F2F8 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		61C703782537EFE000025897 /* SignUpSignIn.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = SignUpSignIn.storyboard; sourceTree = "<group>"; };
+		61C7037D2537EFF400025897 /* PlantCollection.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PlantCollection.storyboard; sourceTree = "<group>"; };
+		61C703822537F00600025897 /* AddEditPlant.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = AddEditPlant.storyboard; sourceTree = "<group>"; };
 		66043331FAD00686D9E73D17 /* Pods-NoPlantLeftBehindTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoPlantLeftBehindTests.debug.xcconfig"; path = "Target Support Files/Pods-NoPlantLeftBehindTests/Pods-NoPlantLeftBehindTests.debug.xcconfig"; sourceTree = "<group>"; };
 		AE199087B683134BD84A7DF8 /* Pods-NoPlantLeftBehind.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NoPlantLeftBehind.debug.xcconfig"; path = "Target Support Files/Pods-NoPlantLeftBehind/Pods-NoPlantLeftBehind.debug.xcconfig"; sourceTree = "<group>"; };
 		CB1B105E640544433532C9B6 /* Pods_NoPlantLeftBehind.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NoPlantLeftBehind.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,7 +119,6 @@
 				66043331FAD00686D9E73D17 /* Pods-NoPlantLeftBehindTests.debug.xcconfig */,
 				373D04A57587828AACD2D6DB /* Pods-NoPlantLeftBehindTests.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -150,6 +155,9 @@
 				6105A4102537E78100A9F2F8 /* LaunchScreen.storyboard */,
 				6105A4132537E78100A9F2F8 /* Info.plist */,
 				6105A40B2537E77F00A9F2F8 /* NoPlantLeftBehind.xcdatamodeld */,
+				61C703782537EFE000025897 /* SignUpSignIn.storyboard */,
+				61C7037D2537EFF400025897 /* PlantCollection.storyboard */,
+				61C703822537F00600025897 /* AddEditPlant.storyboard */,
 			);
 			path = NoPlantLeftBehind;
 			sourceTree = "<group>";
@@ -278,9 +286,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				61C703792537EFE000025897 /* SignUpSignIn.storyboard in Resources */,
 				6105A4122537E78100A9F2F8 /* LaunchScreen.storyboard in Resources */,
+				61C703832537F00600025897 /* AddEditPlant.storyboard in Resources */,
 				6105A40F2537E78100A9F2F8 /* Assets.xcassets in Resources */,
 				6105A40A2537E77F00A9F2F8 /* Main.storyboard in Resources */,
+				61C7037E2537EFF400025897 /* PlantCollection.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
