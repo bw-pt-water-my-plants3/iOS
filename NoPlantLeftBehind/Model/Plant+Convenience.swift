@@ -11,8 +11,11 @@ import CoreData
 extension Plant {
     var plantRepresentation: PlantRepresentation? {
         guard let nickname = nickname else { return nil }
-        
-        return PlantRepresentation(id: id?.uuidString ?? "", nickname: nickname, species: species ?? "Unknown", h2oFrequency: h2oFrequency)
+
+        return PlantRepresentation(id: id?.uuidString ?? "",
+                                   nickname: nickname,
+                                   species: species ?? "Unknown",
+                                   h2oFrequency: h2oFrequency)
     }
     @discardableResult convenience init(id: UUID = UUID(),
                                         nickname: String,
@@ -25,11 +28,12 @@ extension Plant {
         self.species = species
         self.h2oFrequency = h2oFrequency
     }
-    
-    @discardableResult convenience init?(plantRepresentation: PlantRepresentation, context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
+
+    @discardableResult convenience init?(plantRepresentation: PlantRepresentation,
+                                         context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         guard let id = UUID(uuidString: plantRepresentation.id) else {
                 return nil }
-        
+
         self.init(id: id,
                   nickname: plantRepresentation.nickname,
                   species: plantRepresentation.species,
