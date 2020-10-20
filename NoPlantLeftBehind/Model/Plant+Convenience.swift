@@ -7,6 +7,7 @@
 
 import Foundation
 import CoreData
+import UIKit
 
 extension Plant {
     var plantRepresentation: PlantRepresentation? {
@@ -15,18 +16,22 @@ extension Plant {
         return PlantRepresentation(id: id?.uuidString ?? "",
                                    nickname: nickname,
                                    species: species ?? "Unknown",
-                                   h2oFrequency: h2oFrequency)
+                                   h2oFrequency: h2oFrequency,
+                                   lastWatered: lastWatered ?? Date()/*,
+                                   image: image ?? UIImage(named: "blackplant")!.toData*/)
     }
     @discardableResult convenience init(id: UUID = UUID(),
                                         nickname: String,
                                         species: String? = "Unknown",
                                         h2oFrequency: Int16,
+                                        lastWatered: Date,
                                         context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.init(context: context)
         self.id = id
         self.nickname = nickname
         self.species = species
         self.h2oFrequency = h2oFrequency
+        self.lastWatered = lastWatered
     }
 
     @discardableResult convenience init?(plantRepresentation: PlantRepresentation,
@@ -38,6 +43,7 @@ extension Plant {
                   nickname: plantRepresentation.nickname,
                   species: plantRepresentation.species,
                   h2oFrequency: plantRepresentation.h2oFrequency,
+                  lastWatered: plantRepresentation.lastWatered,
                   context: context)
     }
 }

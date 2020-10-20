@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="17192" systemVersion="19H2" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
     <entity name="Plant" representedClassName="Plant" syncable="YES" codeGenerationType="class">
-        <attribute name="h2oFrequency" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
-        <attribute name="id" optional="YES" attributeType="UUID" usesScalarValueType="NO"/>
-        <attribute name="nickname" optional="YES" attributeType="String"/>
+        <attribute name="h2oFrequency" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES"/>
+        <attribute name="id" attributeType="UUID" usesScalarValueType="NO"/>
+        <attribute name="lastWatered" attributeType="Date" usesScalarValueType="NO"/>
+        <attribute name="nickname" attributeType="String"/>
         <attribute name="species" optional="YES" attributeType="String"/>
     </entity>
     <elements>
-        <element name="Plant" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Plant" positionX="-63" positionY="-18" width="128" height="118"/>
     </elements>
 </model>

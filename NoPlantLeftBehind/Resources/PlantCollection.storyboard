@@ -73,6 +73,12 @@
                                         <constraint firstItem="aPZ-h5-TKU" firstAttribute="top" secondItem="cVM-ML-EFA" secondAttribute="bottom" id="ygY-xx-jwn"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="frequencyLabel" destination="1K4-Id-9Ra" id="wSO-BX-aiZ"/>
+                                    <outlet property="nicknameLabel" destination="SUa-iI-FbJ" id="4nu-v7-bpo"/>
+                                    <outlet property="plantImageView" destination="FYk-OV-HpX" id="TW4-ru-Tgr"/>
+                                    <outlet property="wateredLabel" destination="aPZ-h5-TKU" id="eyb-Kx-E8j"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -83,6 +89,13 @@
                     <navigationItem key="navigationItem" title="My Plants" id="9E5-dW-XSd">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="8Gk-lF-yUN"/>
                     </navigationItem>
+                    <refreshControl key="refreshControl" opaque="NO" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" enabled="NO" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="PFb-HG-rHW">
+                        <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <connections>
+                            <action selector="refresh:" destination="ur5-7r-ccf" eventType="valueChanged" id="rhz-sg-qxG"/>
+                        </connections>
+                    </refreshControl>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GrC-IU-sPu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
