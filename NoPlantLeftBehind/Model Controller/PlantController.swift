@@ -99,7 +99,7 @@ class PlantController {
         }.resume()
     }
 
-    // Update/Create Tasks with Representations
+    // Update/Create Plants with Representations
     private func updatePlants(with representations: [PlantRepresentation]) throws {
 
         let context = CoreDataStack.shared.container.newBackgroundContext()
@@ -118,11 +118,11 @@ class PlantController {
 
                 // For already existing plants
                 for plant in existingPlants {
-                    guard let idSwiftLintWantsItLongerThan2Chars = plant.id,
-                        let representation = representationsByID[idSwiftLintWantsItLongerThan2Chars] else { continue }
+                    guard let id = plant.id,
+                        let representation = representationsByID[id] else { continue }
                     // Update plant
                     self.update(plant: plant, with: representation)
-                    plantsToCreate.removeValue(forKey: idSwiftLintWantsItLongerThan2Chars)
+                    plantsToCreate.removeValue(forKey: id)
                 }
 
                 // For new plants

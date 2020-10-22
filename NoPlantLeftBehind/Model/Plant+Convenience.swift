@@ -17,14 +17,17 @@ extension Plant {
                                    nickname: nickname,
                                    species: species ?? "Unknown",
                                    h2oFrequency: h2oFrequency,
-                                   lastWatered: lastWatered ?? Date()/*,
-                                   image: image ?? UIImage(named: "blackplant")!.toData*/)
+                                   lastWatered: lastWatered ?? Date(),
+                                   timesWatered: timesWatered,
+                                   imageData: imageData ?? UIImage(named: "blackplant")!.pngData())
     }
     @discardableResult convenience init(id: UUID = UUID(),
                                         nickname: String,
-                                        species: String? = "Unknown",
-                                        h2oFrequency: Int16,
+                                        species: String?,
+                                        h2oFrequency: Int64,
                                         lastWatered: Date,
+                                        timesWatered: Int64,
+                                        imageData: Data?,
                                         context: NSManagedObjectContext = CoreDataStack.shared.mainContext) {
         self.init(context: context)
         self.id = id
@@ -32,6 +35,8 @@ extension Plant {
         self.species = species
         self.h2oFrequency = h2oFrequency
         self.lastWatered = lastWatered
+        self.timesWatered = timesWatered
+        self.imageData = imageData
     }
 
     @discardableResult convenience init?(plantRepresentation: PlantRepresentation,
@@ -44,6 +49,8 @@ extension Plant {
                   species: plantRepresentation.species,
                   h2oFrequency: plantRepresentation.h2oFrequency,
                   lastWatered: plantRepresentation.lastWatered,
+                  timesWatered: plantRepresentation.timesWatered,
+                  imageData: plantRepresentation.imageData,
                   context: context)
     }
 }

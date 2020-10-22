@@ -15,9 +15,9 @@ class PlantsTableViewController: UITableViewController {
     lazy var fetchedResultsController: NSFetchedResultsController<Plant> = {
         let fetchRequest: NSFetchRequest<Plant> = Plant.fetchRequest()
         fetchRequest.sortDescriptors = [
-            NSSortDescriptor(key: "lastWatered", ascending: false)
+            NSSortDescriptor(key: "lastWatered", ascending: true)
         ]
-        
+
         let moc = CoreDataStack.shared.mainContext
         let frc = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: moc, sectionNameKeyPath: "lastWatered", cacheName: nil)
         frc.delegate = self
@@ -33,6 +33,17 @@ class PlantsTableViewController: UITableViewController {
         super.viewWillAppear(animated)
 
         tableView.reloadData()
+        navigationController?.navigationBar.backgroundColor = .clear
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        let imageView = UIImageView(image: UIImage(named: "nature"))
+        imageView.contentMode = .scaleAspectFill
+        tableView.backgroundView = imageView
+//        tableView.backgroundView?.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        navigationController?.navigationBar.backgroundColor = .clear
     }
 
     @IBAction func refresh(_ sender: Any) {
@@ -58,9 +69,10 @@ class PlantsTableViewController: UITableViewController {
             fatalError("Can't dequeue cell of type \(PlantTableViewCell.reuseIdentifier)")
         }
 
-        cell.delegate = self
         cell.plant = fetchedResultsController.object(at: indexPath)
-        cell.backgroundView = UIImageView(image: UIImage(named: "cardframe"))
+//        cell.backgroundView = UIImageView(image: UIImage(named: "leafframe"))
+//        cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
+        cell.backgroundColor = .clear
 
         return cell
     }
@@ -85,20 +97,20 @@ class PlantsTableViewController: UITableViewController {
         }
     }
 
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "ShowPlantSegue" {
-//            if let detailVC = segue.destination as? PlantDetailViewController,
-//                let indexPath = tableView.indexPathForSelectedRow {
-//                detailVC.plant = fetchedResultsController.object(at: indexPath)
-//                detailVC.plantController = plantController
-//            }
-//        } else if segue.identifier == "CreatePlantSegue" {
-//            if let navController = segue.destination as? UINavigationController,
-//                let createPlantVC = navController.viewControllers.first as? CreatePlantViewController {
-//                createPlantVC.plantController = self.plantController
-//            }
-//        }
-//    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "ShowPlantSegue" {
+            if let detailVC = segue.destination as? PlantDetailViewController,
+                let indexPath = tableView.indexPathForSelectedRow {
+                detailVC.plant = fetchedResultsController.object(at: indexPath)
+                detailVC.plantController = plantController
+            }
+        } else if segue.identifier == "AddPlantSegue" {
+            if let navController = segue.destination as? UINavigationController,
+                let addPlantVC = navController.viewControllers.first as? AddPlantViewController {
+                addPlantVC.plantController = self.plantController
+            }
+        }
+    }
 
 }
 
@@ -145,11 +157,5 @@ extension PlantsTableViewController: NSFetchedResultsControllerDelegate {
         @unknown default:
             break
         }
-    }
-}
-
-extension PlantsTableViewController: PlantTableViewCellDelegate {
-    func didUpdatePlant(plant: Plant) {
-        plantController.sendPlantToServer(plant: plant)
     }
 }
