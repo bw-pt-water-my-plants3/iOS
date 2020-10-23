@@ -28,6 +28,8 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
     }
 
     @IBAction func addPhotoTapped(_ sender: Any) {
+        self.view.endEditing(true)
+        
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.allowsEditing = false
@@ -53,7 +55,7 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
         let species = speciesLabel.text
         let imageData = plantImageView.image?.pngData()
 
-        let plant = Plant(nickname: name, species: species, h2oFrequency: freqNum, lastWatered: Date(), timesWatered: 0, imageData: imageData)
+        let plant = Plant(nickname: name, species: species, h2oFrequency: freqNum, lastWatered: Date(timeIntervalSince1970: 2), timesWatered: 0, imageData: imageData)
         plantController?.sendPlantToServer(plant: plant)
 
         do {

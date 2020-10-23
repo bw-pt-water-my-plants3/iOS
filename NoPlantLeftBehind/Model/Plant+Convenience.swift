@@ -18,8 +18,8 @@ extension Plant {
                                    species: species ?? "Unknown",
                                    h2oFrequency: h2oFrequency,
                                    lastWatered: lastWatered ?? Date(),
-                                   timesWatered: timesWatered,
-                                   imageData: imageData ?? UIImage(named: "blackplant")!.pngData())
+                                   timesWatered: timesWatered/*,
+                                   imageData: imageData ?? UIImage(named: "blackplant")!.pngData()*/)
     }
     @discardableResult convenience init(id: UUID = UUID(),
                                         nickname: String,
@@ -50,7 +50,7 @@ extension Plant {
                   h2oFrequency: plantRepresentation.h2oFrequency,
                   lastWatered: plantRepresentation.lastWatered,
                   timesWatered: plantRepresentation.timesWatered,
-                  imageData: plantRepresentation.imageData,
+                  imageData: nil,
                   context: context)
     }
 }

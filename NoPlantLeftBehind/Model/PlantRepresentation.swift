@@ -14,5 +14,5 @@ struct PlantRepresentation: Codable {
     var h2oFrequency: Int64
     var lastWatered: Date
     var timesWatered: Int64
-    var imageData: Data?
+//    var imageData: Data?
 }

@@ -103,6 +103,9 @@
                             <action selector="refresh:" destination="ur5-7r-ccf" eventType="valueChanged" id="rhz-sg-qxG"/>
                         </connections>
                     </refreshControl>
+                    <connections>
+                        <segue destination="GqM-Oy-P9W" kind="presentation" identifier="LoginViewSegue" id="Hb5-Y8-1Vc"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GrC-IU-sPu" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -277,6 +280,83 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="d9k-S5-9Cq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="308.69565217391306" y="185.49107142857142"/>
+        </scene>
+        <!--Login View Controller-->
+        <scene sceneID="Yeh-1N-iOg">
+            <objects>
+                <viewController id="GqM-Oy-P9W" customClass="LoginViewController" customModule="NoPlantLeftBehind" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="7uC-vk-8Ch">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="CUy-aQ-pBu">
+                                <rect key="frame" x="20" y="40" width="374" height="235"/>
+                                <subviews>
+                                    <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RsD-RV-A6i">
+                                        <rect key="frame" x="119.5" y="0.0" width="135" height="32"/>
+                                        <segments>
+                                            <segment title="Sign Up"/>
+                                            <segment title="Sign In"/>
+                                        </segments>
+                                        <connections>
+                                            <action selector="typeChanged:" destination="GqM-Oy-P9W" eventType="valueChanged" id="ucR-sj-IbZ"/>
+                                        </connections>
+                                    </segmentedControl>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2pv-yk-Yh4">
+                                        <rect key="frame" x="0.0" y="44" width="374" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ck-TB-c8A">
+                                        <rect key="frame" x="0.0" y="91" width="374" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2ib-X3-qXn">
+                                        <rect key="frame" x="0.0" y="138" width="374" height="34"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
+                                    </textField>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="II3-DH-Ef4">
+                                        <rect key="frame" x="40" y="185" width="294" height="50"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="DVU-RD-9eO"/>
+                                        </constraints>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <state key="normal" title="Sign Up"/>
+                                        <connections>
+                                            <action selector="buttonTapped:" destination="GqM-Oy-P9W" eventType="touchUpInside" id="R14-2L-MkZ"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="2ib-X3-qXn" secondAttribute="trailing" id="NzH-6s-vXY"/>
+                                    <constraint firstAttribute="trailing" secondItem="II3-DH-Ef4" secondAttribute="trailing" constant="40" id="g2v-sj-61x"/>
+                                    <constraint firstAttribute="trailing" secondItem="2pv-yk-Yh4" secondAttribute="trailing" id="kRb-uT-aZG"/>
+                                    <constraint firstAttribute="trailing" secondItem="0ck-TB-c8A" secondAttribute="trailing" id="ou5-dH-vwa"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="E4G-gS-pQH"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="CUy-aQ-pBu" firstAttribute="top" secondItem="E4G-gS-pQH" secondAttribute="top" constant="40" id="Fx6-oU-drF"/>
+                            <constraint firstItem="E4G-gS-pQH" firstAttribute="trailing" secondItem="CUy-aQ-pBu" secondAttribute="trailing" constant="20" id="Myw-cL-5vu"/>
+                            <constraint firstItem="CUy-aQ-pBu" firstAttribute="centerX" secondItem="7uC-vk-8Ch" secondAttribute="centerX" id="bZE-Wc-N3l"/>
+                            <constraint firstItem="CUy-aQ-pBu" firstAttribute="leading" secondItem="E4G-gS-pQH" secondAttribute="leading" constant="20" id="z0o-Xd-39v"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="passwordTextField" destination="0ck-TB-c8A" id="pS7-pX-S4h"/>
+                        <outlet property="phoneNumberTextField" destination="2ib-X3-qXn" id="wdw-Md-5L0"/>
+                        <outlet property="signInButton" destination="II3-DH-Ef4" id="gAq-Wo-cUd"/>
+                        <outlet property="signUpSignInControl" destination="RsD-RV-A6i" id="tG9-fc-YfL"/>
+                        <outlet property="usernameTextField" destination="2pv-yk-Yh4" id="kiR-Ej-kHA"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="bYN-38-sUs" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1219" y="-475"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="0Ry-1Y-zH6">

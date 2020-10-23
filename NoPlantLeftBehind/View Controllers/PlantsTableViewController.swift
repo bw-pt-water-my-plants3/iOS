@@ -45,6 +45,14 @@ class PlantsTableViewController: UITableViewController {
 //        tableView.backgroundView?.backgroundColor = UIColor(white: 1, alpha: 0.5)
         navigationController?.navigationBar.backgroundColor = .clear
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if plantController.bearer == nil {
+            performSegue(withIdentifier: "LoginViewSegue", sender: self)
+        }
+    }
 
     @IBAction func refresh(_ sender: Any) {
         plantController.fetchPlantsFromServer { _ in
@@ -108,6 +116,10 @@ class PlantsTableViewController: UITableViewController {
             if let navController = segue.destination as? UINavigationController,
                 let addPlantVC = navController.viewControllers.first as? AddPlantViewController {
                 addPlantVC.plantController = self.plantController
+            }
+        } else if segue.identifier == "LoginViewSegue" {
+            if let loginVC = segue.destination as? LoginViewController {
+                loginVC.plantController = plantController
             }
         }
     }

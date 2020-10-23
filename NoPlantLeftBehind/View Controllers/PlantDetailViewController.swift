@@ -77,6 +77,8 @@ class PlantDetailViewController: UIViewController, UIImagePickerControllerDelega
     }
 
     @IBAction func editPhotoTapped(_ sender: Any) {
+        self.view.endEditing(true)
+        
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.allowsEditing = false
@@ -87,6 +89,8 @@ class PlantDetailViewController: UIViewController, UIImagePickerControllerDelega
     }
 
     @IBAction func waterButtonTapped(_ sender: Any) {
+        self.view.endEditing(true)
+        
         guard let plant = plant else { return }
 
         plant.timesWatered += 1
