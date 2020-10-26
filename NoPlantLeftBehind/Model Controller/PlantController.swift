@@ -8,22 +8,122 @@
 import Foundation
 import CoreData
 
-enum NetworkError: Error {
-    case noIdentifier, otherError, noData, noDecode, noEncode, noRep
-}
-
-let baseURL = URL(string: "https://plants-34ede.firebaseio.com/")!
-
 class PlantController {
+    enum HTTPMethod: String {
+        case get = "GET"
+        case post = "POST"
+    }
+
+    enum NetworkError: Error {
+        case noIdentifier, otherError, noData, noDecode, noEncode, noRep
+        case failedSignUp
+        case failedSignIn
+        case noToken
+    }
+
+    let firebaseURL = URL(string: "https://plants-34ede.firebaseio.com/")!
+    private let baseURL = URL(string: "https://wet-my-plants.herokuapp.com")!
+    private lazy var signUpURL = baseURL.appendingPathComponent("/auth/register")
+    private lazy var signInURL = baseURL.appendingPathComponent("/auth/login")
+    private lazy var plantURL = baseURL.appendingPathComponent("/plant")
+
+    var bearer: Bearer?
+
     typealias CompletionHandler = (Result<Bool, NetworkError>) -> Void
 
     init() {
         fetchPlantsFromServer()
     }
 
-    // Fetch Plants from firebase
+    private func postRequest(for url: URL) -> URLRequest {
+        var request = URLRequest(url: url)
+        request.httpMethod = HTTPMethod.post.rawValue
+        request.setValue("application/json", forHTTPHeaderField: "Content-Type")
+        return request
+    }
+
+    func signUp(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+        print("signUpURL = \(signUpURL.absoluteString)")
+
+        var request = postRequest(for: signUpURL)
+
+        do {
+            let encoder = JSONEncoder()
+            encoder.outputFormatting = .prettyPrinted
+            let jsonData = try encoder.encode(user)
+            print(String(data: jsonData, encoding: .utf8)!)
+            request.httpBody = jsonData
+
+            let task = URLSession.shared.dataTask(with: request) { (_, response, error) in
+                if let error = error {
+                    print("Sign up failed with error: \(error)")
+                    completion(.failure(.failedSignUp))
+                    return
+                }
+
+                guard let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 else {
+                        print("Sign up was unsuccessful")
+                        completion(.failure(.failedSignUp))
+                        return
+                }
+
+                completion(.success(true))
+            }
+            task.resume()
+        } catch {
+            print("Error encoding user: \(error)")
+            completion(.failure(.failedSignUp))
+        }
+    }
+
+    func signIn(with user: User, completion: @escaping (Result<Bool, NetworkError>) -> Void) {
+        var request = postRequest(for: signInURL)
+
+        do {
+            let encoder = JSONEncoder()
+            let jsonData = try encoder.encode(user)
+            request.httpBody = jsonData
+
+            let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
+                if let error = error {
+                    print("Sign in failed with error: \(error)")
+                    completion(.failure(.failedSignIn))
+                    return
+                }
+
+                guard let response = response as? HTTPURLResponse,
+                    response.statusCode == 200 else {
+                        print("Sign in was unsuccessful")
+                        completion(.failure(.failedSignIn))
+                        return
+                }
+
+                guard let data = data else {
+                    print("Data was not received")
+                    completion(.failure(.noData))
+                    return
+                }
+
+                do {
+                    let decoder = JSONDecoder()
+                    self.bearer = try decoder.decode(Bearer.self, from: data)
+                    completion(.success(true))
+                } catch {
+                    print("Error decoding bearer: \(error)")
+                    completion(.failure(.noToken))
+                    return
+                }
+            }
+            task.resume()
+        } catch {
+            print("Error encoding user: \(error.localizedDescription)")
+            completion(.failure(.failedSignIn))
+        }
+    }
+
     func fetchPlantsFromServer(completion: @escaping CompletionHandler = { _ in }) {
-        let requestURL = baseURL.appendingPathExtension("json")
+        let requestURL = firebaseURL.appendingPathExtension("json")
 
         URLSession.shared.dataTask(with: requestURL) { (data, _, error) in
             if let error = error {
@@ -66,7 +166,7 @@ class PlantController {
             return
         }
 
-        let requestURL = baseURL.appendingPathComponent(uuid.uuidString).appendingPathExtension("json")
+        let requestURL = firebaseURL.appendingPathComponent(uuid.uuidString).appendingPathExtension("json")
 
         var request = URLRequest(url: requestURL)
         request.httpMethod = "PUT"
@@ -99,7 +199,7 @@ class PlantController {
         }.resume()
     }
 
-    // Update/Create Tasks with Representations
+    // Update/Create Plants with Representations
     private func updatePlants(with representations: [PlantRepresentation]) throws {
 
         let context = CoreDataStack.shared.container.newBackgroundContext()
@@ -111,18 +211,18 @@ class PlantController {
         var plantsToCreate = representationsByID
 
         let fetchRequest: NSFetchRequest<Plant> = Plant.fetchRequest()
-        fetchRequest.predicate = NSPredicate(format: "identifier IN %@", identifiersToFetch)
+        fetchRequest.predicate = NSPredicate(format: "id IN %@", identifiersToFetch)
         context.perform {
             do {
                 let existingPlants = try context.fetch(fetchRequest)
 
                 // For already existing plants
                 for plant in existingPlants {
-                    guard let idSwiftLintWantsItLongerThan2Chars = plant.id,
-                        let representation = representationsByID[idSwiftLintWantsItLongerThan2Chars] else { continue }
+                    guard let id = plant.id,
+                        let representation = representationsByID[id] else { continue }
                     // Update plant
                     self.update(plant: plant, with: representation)
-                    plantsToCreate.removeValue(forKey: idSwiftLintWantsItLongerThan2Chars)
+                    plantsToCreate.removeValue(forKey: id)
                 }
 
                 // For new plants
@@ -153,7 +253,7 @@ class PlantController {
             return
         }
 
-        let requestURL = baseURL.appendingPathComponent(uuid.uuidString).appendingPathExtension("json")
+        let requestURL = firebaseURL.appendingPathComponent(uuid.uuidString).appendingPathExtension("json")
         var request = URLRequest(url: requestURL)
         request.httpMethod = "DELETE"
 
@@ -161,10 +261,5 @@ class PlantController {
             print(response!)
             completion(.success(true))
         }.resume()
-    }
-
-    private func saveToPersistentStore() throws {
-        let moc = CoreDataStack.shared.mainContext
-        try moc.save()
     }
 }

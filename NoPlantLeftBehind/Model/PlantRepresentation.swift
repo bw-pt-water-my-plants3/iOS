@@ -11,7 +11,8 @@ struct PlantRepresentation: Codable {
     var id: String
     var nickname: String
     var species: String?
-    var h2oFrequency: Int16
+    var h2oFrequency: Int64
     var lastWatered: Date
-//    var image: Data
+    var timesWatered: Int64
+//    var imageData: Data?
 }
