@@ -29,7 +29,7 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
 
     @IBAction func addPhotoTapped(_ sender: Any) {
         self.view.endEditing(true)
-        
+
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.allowsEditing = false
@@ -73,5 +73,4 @@ class AddPlantViewController: UIViewController, UIImagePickerControllerDelegate,
 
         dismiss(animated: true, completion: nil)
     }
-
 }

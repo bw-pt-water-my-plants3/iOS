@@ -35,20 +35,19 @@ class PlantsTableViewController: UITableViewController {
         tableView.reloadData()
         navigationController?.navigationBar.backgroundColor = .clear
     }
-    
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         let imageView = UIImageView(image: UIImage(named: "nature"))
         imageView.contentMode = .scaleAspectFill
         tableView.backgroundView = imageView
-//        tableView.backgroundView?.backgroundColor = UIColor(white: 1, alpha: 0.5)
         navigationController?.navigationBar.backgroundColor = .clear
     }
-    
+
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        
+
         if plantController.bearer == nil {
             performSegue(withIdentifier: "LoginViewSegue", sender: self)
         }
@@ -61,8 +60,6 @@ class PlantsTableViewController: UITableViewController {
             }
         }
     }
-
-    // MARK: - Table view data source
 
     override func numberOfSections(in tableView: UITableView) -> Int {
         return fetchedResultsController.sections?.count ?? 1
@@ -78,8 +75,6 @@ class PlantsTableViewController: UITableViewController {
         }
 
         cell.plant = fetchedResultsController.object(at: indexPath)
-//        cell.backgroundView = UIImageView(image: UIImage(named: "leafframe"))
-//        cell.backgroundColor = UIColor(white: 1, alpha: 0.5)
         cell.backgroundColor = .clear
 
         return cell
@@ -123,7 +118,6 @@ class PlantsTableViewController: UITableViewController {
             }
         }
     }
-
 }
 
 extension PlantsTableViewController: NSFetchedResultsControllerDelegate {

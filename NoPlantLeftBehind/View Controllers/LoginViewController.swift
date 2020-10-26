@@ -20,11 +20,22 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var phoneNumberTextField: UITextField!
     @IBOutlet weak var signInButton: UIButton!
 
+    @IBOutlet weak var signUpStack: UIStackView!
+
     var plantController: PlantController?
     var loginType = LoginType.signUp
 
     override func viewDidLoad() {
         super.viewDidLoad()
+
+        let imageView = UIImageView(frame: UIScreen.main.bounds)
+        imageView.image = UIImage(named: "bush")
+        imageView.contentMode = .scaleAspectFill
+        self.view.insertSubview(imageView, at: 0)
+
+        signUpStack.backgroundColor = UIColor(white: 1, alpha: 1)
+        signUpStack.layer.cornerRadius = 10
+        signUpStack.bounds = view.frame.insetBy(dx: 0.0, dy: 10.0)
 
         signInButton.backgroundColor = UIColor(hue: 190/360, saturation: 70/100, brightness: 80/100, alpha: 1.0)
         signInButton.tintColor = .white

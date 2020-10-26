@@ -262,9 +262,4 @@ class PlantController {
             completion(.success(true))
         }.resume()
     }
-
-    private func saveToPersistentStore() throws {
-        let moc = CoreDataStack.shared.mainContext
-        try moc.save()
-    }
 }

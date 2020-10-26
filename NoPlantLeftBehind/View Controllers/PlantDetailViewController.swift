@@ -19,6 +19,7 @@ class PlantDetailViewController: UIViewController, UIImagePickerControllerDelega
     @IBOutlet weak var lastWateredLabel: UITextField!
     @IBOutlet weak var plantImageView: UIImageView!
     @IBOutlet weak var editPhotoButton: UIButton!
+    @IBOutlet weak var waterPlantButton: UIButton!
 
     var formatter: DateFormatter {
         let formatter = DateFormatter()
@@ -31,13 +32,17 @@ class PlantDetailViewController: UIViewController, UIImagePickerControllerDelega
         super.viewDidLoad()
 
         navigationItem.rightBarButtonItem = editButtonItem
-        
+
         let imageView = UIImageView(frame: UIScreen.main.bounds)
         imageView.image = UIImage(named: "tropical")
         imageView.contentMode = .scaleToFill
         self.view.insertSubview(imageView, at: 0)
         navigationController?.navigationBar.backgroundColor = UIColor(white: 1, alpha: 0.75)
-        
+
+        waterPlantButton.backgroundColor = UIColor(hue: 190/360, saturation: 70/100, brightness: 80/100, alpha: 1.0)
+        waterPlantButton.tintColor = .white
+        waterPlantButton.layer.cornerRadius = 8.0
+
         updateViews()
     }
 
@@ -78,7 +83,7 @@ class PlantDetailViewController: UIViewController, UIImagePickerControllerDelega
 
     @IBAction func editPhotoTapped(_ sender: Any) {
         self.view.endEditing(true)
-        
+
         let pickerController = UIImagePickerController()
         pickerController.delegate = self
         pickerController.allowsEditing = false
@@ -90,7 +95,7 @@ class PlantDetailViewController: UIViewController, UIImagePickerControllerDelega
 
     @IBAction func waterButtonTapped(_ sender: Any) {
         self.view.endEditing(true)
-        
+
         guard let plant = plant else { return }
 
         plant.timesWatered += 1
@@ -135,5 +140,4 @@ class PlantDetailViewController: UIViewController, UIImagePickerControllerDelega
 
         dismiss(animated: true, completion: nil)
     }
-
 }

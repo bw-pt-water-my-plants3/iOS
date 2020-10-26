@@ -120,7 +120,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="ml2-XT-Ixq">
-                                <rect key="frame" x="8" y="148" width="398" height="513.5"/>
+                                <rect key="frame" x="8" y="148" width="398" height="542.5"/>
                                 <subviews>
                                     <textField opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="251" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Plant Nickname" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="SMj-IA-vTm">
                                         <rect key="frame" x="0.0" y="0.0" width="398" height="30.5"/>
@@ -157,7 +157,10 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="TLT-7j-gnU">
-                                        <rect key="frame" x="0.0" y="472.5" width="398" height="41"/>
+                                        <rect key="frame" x="0.0" y="472.5" width="398" height="70"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="70" id="Ma2-nL-YKa"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                         <state key="normal" title="WATER THIS PLANT!"/>
                                         <connections>
@@ -183,6 +186,7 @@
                         <outlet property="nameLabel" destination="SMj-IA-vTm" id="5gE-cY-PST"/>
                         <outlet property="plantImageView" destination="of1-Uu-dkj" id="VuU-ba-CnQ"/>
                         <outlet property="speciesLabel" destination="oyU-iZ-Spl" id="T7z-bj-OpF"/>
+                        <outlet property="waterPlantButton" destination="TLT-7j-gnU" id="OXh-cQ-QPR"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9S7-jX-8dF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -290,10 +294,22 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="CUy-aQ-pBu">
-                                <rect key="frame" x="20" y="40" width="374" height="235"/>
+                                <rect key="frame" x="20" y="40" width="374" height="315"/>
                                 <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7UL-xd-KCR">
+                                        <rect key="frame" x="185.5" y="0.0" width="3" height="1.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="1"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <textField opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="bottom" text="No Plant Left Behind" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ulp-SN-Kd2">
+                                        <rect key="frame" x="10" y="14.5" width="354" height="52.5"/>
+                                        <color key="textColor" red="0.0" green="0.56284224989999998" blue="0.31881666180000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <fontDescription key="fontDescription" name="Papyrus" family="Papyrus" pointSize="33"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
                                     <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RsD-RV-A6i">
-                                        <rect key="frame" x="119.5" y="0.0" width="135" height="32"/>
+                                        <rect key="frame" x="119.5" y="80" width="135" height="32"/>
                                         <segments>
                                             <segment title="Sign Up"/>
                                             <segment title="Sign In"/>
@@ -303,22 +319,22 @@
                                         </connections>
                                     </segmentedControl>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Username" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2pv-yk-Yh4">
-                                        <rect key="frame" x="0.0" y="44" width="374" height="34"/>
+                                        <rect key="frame" x="10" y="124" width="354" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0ck-TB-c8A">
-                                        <rect key="frame" x="0.0" y="91" width="374" height="34"/>
+                                        <rect key="frame" x="10" y="171" width="354" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Phone Number" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="2ib-X3-qXn">
-                                        <rect key="frame" x="0.0" y="138" width="374" height="34"/>
+                                        <rect key="frame" x="10" y="218" width="354" height="34"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" keyboardType="phonePad"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="II3-DH-Ef4">
-                                        <rect key="frame" x="40" y="185" width="294" height="50"/>
+                                        <rect key="frame" x="40" y="265" width="294" height="50"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="DVU-RD-9eO"/>
                                         </constraints>
@@ -330,10 +346,11 @@
                                     </button>
                                 </subviews>
                                 <constraints>
-                                    <constraint firstAttribute="trailing" secondItem="2ib-X3-qXn" secondAttribute="trailing" id="NzH-6s-vXY"/>
+                                    <constraint firstAttribute="trailing" secondItem="Ulp-SN-Kd2" secondAttribute="trailing" constant="10" id="5Se-Zx-3k2"/>
+                                    <constraint firstAttribute="trailing" secondItem="2ib-X3-qXn" secondAttribute="trailing" constant="10" id="NzH-6s-vXY"/>
                                     <constraint firstAttribute="trailing" secondItem="II3-DH-Ef4" secondAttribute="trailing" constant="40" id="g2v-sj-61x"/>
-                                    <constraint firstAttribute="trailing" secondItem="2pv-yk-Yh4" secondAttribute="trailing" id="kRb-uT-aZG"/>
-                                    <constraint firstAttribute="trailing" secondItem="0ck-TB-c8A" secondAttribute="trailing" id="ou5-dH-vwa"/>
+                                    <constraint firstAttribute="trailing" secondItem="2pv-yk-Yh4" secondAttribute="trailing" constant="10" id="kRb-uT-aZG"/>
+                                    <constraint firstAttribute="trailing" secondItem="0ck-TB-c8A" secondAttribute="trailing" constant="10" id="ou5-dH-vwa"/>
                                 </constraints>
                             </stackView>
                         </subviews>
@@ -351,6 +368,7 @@
                         <outlet property="phoneNumberTextField" destination="2ib-X3-qXn" id="wdw-Md-5L0"/>
                         <outlet property="signInButton" destination="II3-DH-Ef4" id="gAq-Wo-cUd"/>
                         <outlet property="signUpSignInControl" destination="RsD-RV-A6i" id="tG9-fc-YfL"/>
+                        <outlet property="signUpStack" destination="CUy-aQ-pBu" id="vUA-ku-mHb"/>
                         <outlet property="usernameTextField" destination="2pv-yk-Yh4" id="kiR-Ej-kHA"/>
                     </connections>
                 </viewController>
