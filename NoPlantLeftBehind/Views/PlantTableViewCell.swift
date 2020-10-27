@@ -34,7 +34,7 @@ class PlantTableViewCell: UITableViewCell {
 
         nicknameLabel.text = plant.nickname
         if plant.h2oFrequency == 1 {
-            frequencyLabel.text = "Water every \(plant.h2oFrequency) day"
+            frequencyLabel.text = "Water every day"
         } else {
             frequencyLabel.text = "Water every \(plant.h2oFrequency) days"
         }

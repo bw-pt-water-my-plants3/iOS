@@ -75,7 +75,21 @@ class PlantDetailViewController: UIViewController, UIImagePickerControllerDelega
         if editing { wasEdited = true }
         nameLabel.isUserInteractionEnabled = editing
         speciesLabel.isUserInteractionEnabled = editing
-        frequencyLabel.text = String(plant!.h2oFrequency)
+        if let str = frequencyLabel.text {
+            if frequencyLabel.text?.count ?? 0 > 5 {
+                for _ in 0...11 {
+                    if let index = str.index(str.startIndex, offsetBy: 0, limitedBy: str.endIndex) {
+                        frequencyLabel.text?.remove(at: index)
+                    }
+                }
+
+                for _ in 0...4 {
+                    if let index = str.index(str.startIndex, offsetBy: 1, limitedBy: str.endIndex) {
+                        frequencyLabel.text?.remove(at: index)
+                    }
+                }
+            }
+        }
         frequencyLabel.isUserInteractionEnabled = editing
         editPhotoButton.isHidden = !editing
         navigationItem.hidesBackButton = editing
