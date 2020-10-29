@@ -8,35 +8,66 @@
 import XCTest
 
 class NoPlantLeftBehindUITests: XCTestCase {
+    
+    let app = XCUIApplication()
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-
-        // In UI tests it is usually best to stop immediately when a failure occurs.
-        continueAfterFailure = false
-
-        // In UI tests it’s important to set the initial state - such as interface orientation - required for your tests before they run. The setUp method is a good place to do this.
-    }
-
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
-
-    func testExample() throws {
-        // UI tests must launch the application that they test.
-        let app = XCUIApplication()
+    func testCreateNewPlant() throws {
         app.launch()
 
-        // Use recording to get started writing UI tests.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
+        app.navigationBars["My Plants"].buttons["Add"].tap()
 
-    func testLaunchPerformance() throws {
-        if #available(macOS 10.15, iOS 13.0, tvOS 13.0, *) {
-            // This measures how long it takes to launch your application.
-            measure(metrics: [XCTApplicationLaunchMetric()]) {
-                XCUIApplication().launch()
-            }
-        }
+        XCTAssert(app.textFields["Plant Nickname"].exists)
+
+        let plantNicknameTextField = app.textFields["Plant Nickname"]
+        plantNicknameTextField.tap()
+        plantNicknameTextField.typeText("Mr Planty")
+
+        XCTAssert(app.textFields["Plant Species (optional)"].exists)
+
+        let plantSpeciesOptionalTextField = app.textFields["Plant Species (optional)"]
+        plantSpeciesOptionalTextField.tap()
+        plantSpeciesOptionalTextField.typeText("Tumbleweed")
+
+        XCTAssert(app.textFields["Watering Frequency (in days)"].exists)
+
+        let wateringFrequencyInDaysTextField = app.textFields["Watering Frequency (in days)"]
+        wateringFrequencyInDaysTextField.tap()
+        wateringFrequencyInDaysTextField.typeText("2")
+
+        app.staticTexts["Add Photo"].tap()
+        app.scrollViews.otherElements.images["Photo, August 08, 2012, 12:52 PM"].tap()
+        app.navigationBars["Add New Plant"].buttons["Save"].tap()
+    }
+    
+    func testDeletePlant() throws {
+        app.launch()
+
+        app.navigationBars["My Plants"].buttons["Add"].tap()
+
+        XCTAssert(app.textFields["Plant Nickname"].exists)
+
+        let plantNicknameTextField = app.textFields["Plant Nickname"]
+        plantNicknameTextField.tap()
+        plantNicknameTextField.typeText("Mr Planty")
+
+        XCTAssert(app.textFields["Plant Species (optional)"].exists)
+
+        let plantSpeciesOptionalTextField = app.textFields["Plant Species (optional)"]
+        plantSpeciesOptionalTextField.tap()
+        plantSpeciesOptionalTextField.typeText("Tumbleweed")
+
+        XCTAssert(app.textFields["Watering Frequency (in days)"].exists)
+
+        let wateringFrequencyInDaysTextField = app.textFields["Watering Frequency (in days)"]
+        wateringFrequencyInDaysTextField.tap()
+        wateringFrequencyInDaysTextField.typeText("2")
+
+        app.staticTexts["Add Photo"].tap()
+        app.scrollViews.otherElements.images["Photo, August 08, 2012, 12:52 PM"].tap()
+        app.navigationBars["Add New Plant"].buttons["Save"].tap()
+
+        let plants = app.tables.cells
+        plants.element(boundBy: 0).swipeLeft()
+        plants.element(boundBy: 0).buttons["Delete"].tap()
     }
 }

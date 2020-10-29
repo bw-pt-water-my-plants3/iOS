@@ -48,9 +48,10 @@ class PlantsTableViewController: UITableViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
 
-        if plantController.bearer == nil {
-            performSegue(withIdentifier: "LoginViewSegue", sender: self)
-        }
+        // I disabled this for my UI testing, this shoud be uncommented for using the sign up sign in functionality in the app
+//        if plantController.bearer == nil {
+//            performSegue(withIdentifier: "LoginViewSegue", sender: self)
+//        }
     }
 
     @IBAction func refresh(_ sender: Any) {

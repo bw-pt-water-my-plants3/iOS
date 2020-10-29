@@ -10,24 +10,27 @@ import XCTest
 
 class NoPlantLeftBehindTests: XCTestCase {
 
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
-    }
+    let plantController = PlantController()
+    let plant = Plant(nickname: "Groot", species: "Tree", h2oFrequency: 2, lastWatered: Date(timeIntervalSince1970: 2), timesWatered: 0, imageData: UIImage(named: "blackplant")!.pngData())
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
-    }
+    func testSendPlantToServerWithExpectation() {
+        let didFinish = expectation(description: "didFinish")
 
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
+        plantController.sendPlantToServer(plant: plant) { result in
+            XCTAssertTrue(result == .success(true))
+            didFinish.fulfill()
         }
+        wait(for: [didFinish], timeout: 5)
+    }
+
+    func testDeletePlantFromServer() {
+        let didFinish = expectation(description: "didFinish")
+
+        plantController.deletePlantFromServer(plant) { (result) in
+            XCTAssertTrue(result == .success(true))
+            didFinish.fulfill()
+        }
+        wait(for: [didFinish], timeout: 5)
     }
 
 }
